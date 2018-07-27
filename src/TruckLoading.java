@@ -5,7 +5,11 @@ import java.util.Stack;
 
 public class TruckLoading {
 	public static void main(String[] args) {
-		int[] weights = new int[]{9,2,10,2,2,8,1,7,2,7};
+		int[] weights1 = new int[]{9,2,10,5,2,8,1,10,2,5};
+		testEverySolver(weights1);
+	}
+	
+	public static void testEverySolver(int[] weights) {
 		int maxBinCapacity = 15;
 		testSolver(weights, maxBinCapacity, new FirstFitSolver());
 		testSolver(weights, maxBinCapacity, new BestFitSolver());
@@ -21,14 +25,13 @@ public class TruckLoading {
 	
 	public static void testSolver(int[] weights, int maxBinCapacity, Solver solver) {
 		System.out.println("Testing " + solver.name());
-		System.out.println("Initial parcels");
+		System.out.println("Initial parcels : ");
 		
 		Stack<Parcel> parcels = initializeParcels(weights);
-		System.out.println(parcels);
+		System.out.println(new ArrayList<Parcel>(parcels));
 		System.out.println("Bin maximun capacity is " + maxBinCapacity);
-		System.out.println("Resulting bins");
+		System.out.println("Resulting bins : ");
 		MyLinkedList<Bin> result = solver.solve(parcels, maxBinCapacity);
 		System.out.println(result.toString());
 	}
-	
 }
