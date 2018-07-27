@@ -24,6 +24,7 @@ public class TruckLoading {
 		int maxBinCapacity = 15;
 		testSolver(weights, maxBinCapacity, new FirstFitSolver());
 		testSolver(weights, maxBinCapacity, new BestFitSolver());
+		testSolver(weights, maxBinCapacity, new FirstFitDecreaseSolver());
 		System.out.println("==========================================================");
 	}
 
