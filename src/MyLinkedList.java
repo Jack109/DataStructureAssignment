@@ -32,7 +32,7 @@ public class MyLinkedList<T> {
 	}
 	
 	public String toString() {
-		String result = "";
+		String result = "Number of bins used = " + elements.size() + "\n";
 		int index = 0;
 		for (T element : elements) {
 			result += "(" + index +")" + element.toString() + "\n";
