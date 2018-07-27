@@ -7,7 +7,8 @@ public class TruckLoading {
 	public static void main(String[] args) {
 		int[] weights = new int[]{9,2,10,2,2,8,1,7,2,7};
 		int maxBinCapacity = 15;
-		testFirstFit(weights, maxBinCapacity);
+		testSolver(weights, maxBinCapacity, new FirstFitSolver());
+		testSolver(weights, maxBinCapacity, new BestFitSolver());
 	}
 	
 	public static Stack<Parcel> initializeParcels(int[] weights) {
@@ -18,15 +19,15 @@ public class TruckLoading {
 		return parcels;
 	}
 	
-	public static void testFirstFit(int[] weights, int maxBinCapacity) {
-		System.out.println("Test first fit");
+	public static void testSolver(int[] weights, int maxBinCapacity, Solver solver) {
+		System.out.println("Testing " + solver.name());
 		System.out.println("Initial parcels");
 		
 		Stack<Parcel> parcels = initializeParcels(weights);
 		System.out.println(parcels);
 		System.out.println("Bin maximun capacity is " + maxBinCapacity);
 		System.out.println("Resulting bins");
-		MyLinkedList<Bin> result = Solution.firstFit(parcels, maxBinCapacity);
+		MyLinkedList<Bin> result = solver.solve(parcels, maxBinCapacity);
 		System.out.println(result.toString());
 	}
 	

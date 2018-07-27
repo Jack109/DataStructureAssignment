@@ -29,7 +29,7 @@ public class Bin {
 	}
 
 	public String toString() {
-		return "Weight = " + this.currentWeight
+		return "Total weight = " + this.currentWeight
 				+ " " + this.parcels;
 	}
 }
