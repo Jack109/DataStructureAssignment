@@ -12,6 +12,7 @@ public class FirstFitDecreaseSolver implements Solver {
 		return "First Fit Decrease";
 	}
 
+	// Modified from https://www.geeksforgeeks.org/sort-stack-using-temporary-stack/
 	public static <T extends Comparable> Stack<T> sortstack(Stack<T> input) {
 		Stack<T> tmpStack = new Stack<T>();
 		while (!input.isEmpty()) {
