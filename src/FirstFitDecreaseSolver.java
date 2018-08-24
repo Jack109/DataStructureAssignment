@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Stack;
 
-public class FirstFitDecreaseSolver<T extends Weightable> implements Solver<T> {
+public class FirstFitDecreaseSolver<T extends Weightable> extends FirstFitSolver<T> {
 	@Override
 	public String name() {
 		return "First Fit Decrease";
@@ -10,10 +10,6 @@ public class FirstFitDecreaseSolver<T extends Weightable> implements Solver<T> {
 	@Override
 	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
 		elements = StackSorter.sortstack(elements);
-		return new FirstFitSolver().solve(elements, maxCapacity);
-	}
-
-	
-
-	
+		return super.solve(elements, maxCapacity);
+	}	
 }

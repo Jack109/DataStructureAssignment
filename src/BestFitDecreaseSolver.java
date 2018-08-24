@@ -1,12 +1,12 @@
 import java.util.List;
 import java.util.Stack;
 
-public class BestFitDecreaseSolver<T extends Weightable> implements Solver<T> {
+public class BestFitDecreaseSolver<T extends Weightable> extends BestFitSolver<T> {
 
 	@Override
 	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
 		elements = StackSorter.sortstack(elements);
-		return new BestFitSolver().solve(elements, maxCapacity);	
+		return super.solve(elements, maxCapacity);	
 	}
 
 	@Override
