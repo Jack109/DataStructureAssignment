@@ -44,7 +44,7 @@ public class TruckLoading {
 		System.out.println(new ArrayList<Parcel>(parcels));
 		System.out.println("Bin maximun capacity is " + maxBinCapacity);
 		System.out.println("Resulting bins : ");
-		MyLinkedList<Bin> result = solver.solve(parcels, maxBinCapacity);
+		PointingList<Bin> result = solver.solve(parcels, maxBinCapacity);
 		System.out.println(result.toString());
 	}
 }

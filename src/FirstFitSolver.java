@@ -1,8 +1,8 @@
 import java.util.Stack;
 
 public class FirstFitSolver implements Solver {
-	public MyLinkedList<Bin> solve(Stack<Parcel> parcels, double maxBinCapacity) {
-		MyLinkedList<Bin> bins = new MyLinkedList<Bin>();
+	public PointingList<Bin> solve(Stack<Parcel> parcels, double maxBinCapacity) {
+		PointingList<Bin> bins = new PointingList<Bin>();
 		bins.add(new Bin(maxBinCapacity));
 		while (parcels.size() > 0) {
 			Parcel currentParcel = parcels.pop();
