@@ -8,7 +8,7 @@ public class FirstFitDecreaseSolver<T extends Weightable> extends FirstFitSolver
 	}
 	
 	@Override
-	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
+	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) throws Exception {
 		elements = StackSorter.sortstack(elements);
 		return super.solve(elements, maxCapacity);
 	}	

@@ -4,7 +4,7 @@ import java.util.Stack;
 public class BestFitDecreaseSolver<T extends Weightable> extends BestFitSolver<T> {
 
 	@Override
-	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
+	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) throws Exception {
 		elements = StackSorter.sortstack(elements);
 		return super.solve(elements, maxCapacity);	
 	}

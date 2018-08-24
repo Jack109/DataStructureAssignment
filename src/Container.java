@@ -12,7 +12,8 @@ public class Container<T extends Weightable> {
 		this.elements = new ArrayList<T>();
 	}
 
-	public boolean canFit(T newElement) {
+	public boolean canFit(T newElement) throws Exception {
+		validateWeight(newElement);
 		return this.maxCapacity  - 
 			   this.usedCapacity - 
 			   newElement.getWeight() >= 0;
@@ -25,19 +26,27 @@ public class Container<T extends Weightable> {
 	 * Positive score indicates the spaces left after newElement is put into this container
 	 * So, lower score (which is non-negative) is better
 	 * */
-	public double getScore(T newElement) {
+	public double getScore(T newElement) throws Exception {
+		validateWeight(newElement);
 		return this.maxCapacity  - 
 			   this.usedCapacity - 
 			   newElement.getWeight();
 	}
 
-	public void add(T currentParcel) {
-		this.elements.add(currentParcel);
-		this.usedCapacity += currentParcel.getWeight();
+	public void add(T newElement) throws Exception {
+		validateWeight(newElement);
+		this.elements.add(newElement);
+		this.usedCapacity += newElement.getWeight();
 	}
 
 	public String toString() {
 		return "Total weight = " + this.usedCapacity
 				+ " " + this.elements;
+	}
+	
+	private void validateWeight(T newElement) throws Exception {
+		if(newElement.getWeight() > this.maxCapacity) {
+			throw new Exception("The max capacity is " + this.maxCapacity + " but the new element has weight of " + newElement.getWeight());
+		}
 	}
 }

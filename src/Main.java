@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// Note that the last element is actually the first element,
 		// Because Stack is used
 
@@ -28,7 +28,7 @@ public class Main {
 
 	}
 
-	public static void testEverySolver(int[] weights, String message) {
+	public static void testEverySolver(int[] weights, String message) throws Exception {
 		System.out.println(message + "\n");
 		int maxBinCapacity = 15;
 		testSolver(weights, maxBinCapacity, new FirstFitSolver<Parcel>());
@@ -46,7 +46,7 @@ public class Main {
 		return parcels;
 	}
 
-	public static void testSolver(int[] weights, int maxBinCapacity, Solver<Parcel> solver) {
+	public static void testSolver(int[] weights, int maxBinCapacity, Solver<Parcel> solver) throws Exception {
 		System.out.println("Testing " + solver.name() + "\n");
 		Stack<Parcel> parcels = initializeParcels(weights);
 		System.out.println("Initial parcels : " + new ArrayList<Parcel>(parcels) + "\n");

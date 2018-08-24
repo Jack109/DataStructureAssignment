@@ -7,7 +7,7 @@ public class FirstFitSolver<T extends Weightable> implements Solver<T> {
 	}
 
 	@Override
-	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
+	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) throws Exception {
 		PointingList<Container<T>> containers = new PointingList<Container<T>>();
 		containers.add(new Container<T>(maxCapacity));
 		while (elements.size() > 0) {
