@@ -34,6 +34,7 @@ public class Main {
 		testSolver(weights, maxBinCapacity, new FirstFitSolver());
 		testSolver(weights, maxBinCapacity, new BestFitSolver());
 		testSolver(weights, maxBinCapacity, new FirstFitDecreaseSolver());
+		testSolver(weights, maxBinCapacity, new BestFitDecreaseSolver());
 		System.out.println("==========================================================");
 	}
 
