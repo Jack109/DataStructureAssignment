@@ -1,6 +1,4 @@
-import java.util.List;
-
-public class Parcel implements Comparable {
+public class Parcel implements Weightable {
 	private double weight;
 	private int id;
 
@@ -29,6 +27,5 @@ public class Parcel implements Comparable {
 			return -1;
 		else
 			return 0;
-
 	}
 }

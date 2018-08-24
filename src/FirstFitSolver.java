@@ -1,25 +1,26 @@
 import java.util.Stack;
 
-public class FirstFitSolver implements Solver {
-	public PointingList<Bin> solve(Stack<Parcel> parcels, double maxBinCapacity) {
-		PointingList<Bin> bins = new PointingList<Bin>();
-		bins.add(new Bin(maxBinCapacity));
-		while (parcels.size() > 0) {
-			Parcel currentParcel = parcels.pop();
-			bins.moveToFirst();
-			while (!bins.getCurrent().canFit(currentParcel)) {
-				bins.moveToNext();
-				if (bins.getCurrent() == null) {
-					bins.add(new Bin(maxBinCapacity));
+public class FirstFitSolver<T extends Weightable> implements Solver<T> {	
+	public String name() {
+		return "First Fit";
+	}
+
+	@Override
+	public PointingList<Container<T>> solve(Stack<T> elements, double maxCapacity) {
+		PointingList<Container<T>> containers = new PointingList<Container<T>>();
+		containers.add(new Container<T>(maxCapacity));
+		while (elements.size() > 0) {
+			T currentElement = elements.pop();
+			containers.moveToFirst();
+			while (!containers.getCurrent().canFit(currentElement)) {
+				containers.moveToNext();
+				if (containers.getCurrent() == null) {
+					containers.add(new Container<T>(maxCapacity));
 					break;
 				} 
 			}
-			bins.getCurrent().add(currentParcel);
+			containers.getCurrent().add(currentElement);
 		}
-		return bins;
-	}
-	
-	public String name() {
-		return "First Fit";
+		return containers;
 	}
 }

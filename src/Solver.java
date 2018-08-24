@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public interface Solver {
-	PointingList<Bin> solve(Stack<Parcel> parcels, double maxBinCapacity);
+public interface Solver<E extends Weightable> {
+	PointingList<Container<E>> solve(Stack<E> elements, double maxCapacity);
 	String name();
 }
