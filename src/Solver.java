@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.Stack;
 
-public interface Solver<E extends Weightable> {
-	PointingList<Container<E>> solve(Stack<E> elements, double maxCapacity);
+public interface Solver<T extends Weightable> {
+	List<Container<T>> solve(Stack<T> elements, double maxCapacity);
 	String name();
 }

@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Stack;
 
 public class BestFitSolver<T extends Weightable> implements Solver<T> {
@@ -6,7 +7,7 @@ public class BestFitSolver<T extends Weightable> implements Solver<T> {
 	}
 
 	@Override
-	public PointingList<Container<T>> solve(Stack<T> elements, double maxCapacity) {
+	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) {
 		PointingList<Container<T>> containers = new PointingList<Container<T>>();
 		containers.add(new Container<T>(maxCapacity));
 		while (elements.size() > 0) {
@@ -34,6 +35,6 @@ public class BestFitSolver<T extends Weightable> implements Solver<T> {
 				bestContainer.add(currentElement);
 			}
 		}
-		return containers;
+		return containers.toList();
 	}
 }

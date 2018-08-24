@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PointingList<T> {
 	private int index = 0;
@@ -51,6 +53,13 @@ public class PointingList<T> {
 		for(int i = 0; i < this.getSize(); i++) {
 			result += "(" + i +")" + this.elements[i].toString() + "\n";
 		}
+		return result;
+	}
+	
+	public List<T> toList() {
+		ArrayList<T> result = new ArrayList<T>();
+		for(int i = 0; i < this.getSize(); i++)
+			result.add(this.elements[i]);
 		return result;
 	}
 }
