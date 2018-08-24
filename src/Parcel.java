@@ -1,8 +1,16 @@
 import java.util.List;
 
 public class Parcel implements Comparable {
-	double weight;
-	int id;
+	private double weight;
+	private int id;
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public int id() {
+		return id;
+	}
 
 	public Parcel(double weight) {
 		this.weight = weight;
@@ -15,9 +23,12 @@ public class Parcel implements Comparable {
 	@Override
 	public int compareTo(Object o) {
 		Parcel other = (Parcel) o;
-		if(this.weight > other.weight) return 1;
-		else if(this.weight < other.weight) return -1;
-		else return 0;
+		if (this.weight > other.weight)
+			return 1;
+		else if (this.weight < other.weight)
+			return -1;
+		else
+			return 0;
 
 	}
 }

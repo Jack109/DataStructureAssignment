@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bin {
-	double maxWeight;
-	List<Parcel> parcels;
-	double currentWeight;
+	private double maxWeight;
+	private List<Parcel> parcels;
+	private double currentWeight;
 
 	public Bin(double weight) {
 		this.maxWeight = weight;
@@ -13,16 +13,16 @@ public class Bin {
 	}
 
 	public boolean canFit(Parcel newParcel) {
-		return this.maxWeight - this.currentWeight - newParcel.weight >= 0;
+		return this.maxWeight - this.currentWeight - newParcel.getWeight() >= 0;
 	}
 
 	public double getScore(Parcel currentParcel) {
-		return this.maxWeight - this.currentWeight - currentParcel.weight;
+		return this.maxWeight - this.currentWeight - currentParcel.getWeight();
 	}
 
 	public void add(Parcel currentParcel) {
 		this.parcels.add(currentParcel);
-		this.currentWeight += currentParcel.weight;
+		this.currentWeight += currentParcel.getWeight();
 	}
 
 	public String toString() {
