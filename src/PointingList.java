@@ -4,7 +4,7 @@ public class PointingList<T> {
 	private int index = 0;
 	private int size = 0;
 	private T[] elements;
-	private final int MAX_SIZE = 20;
+	private final int MAX_SIZE = 5;
 	
 	public PointingList() {
 		this.elements = (T[])new Object[MAX_SIZE];
@@ -28,9 +28,12 @@ public class PointingList<T> {
 		}
 	}
 	void add(T newElement) {
-		//if(this.size == this.elements.length) {
-		//	throw new Exception("Max length is reached.");
-		//}
+		if(this.size == this.elements.length) {
+			T[] newArray = (T[])new Object[this.elements.length * 2];
+			System.arraycopy(this.elements, 0, newArray, 0, this.elements.length);
+			this.elements = newArray;
+		}
+		
 		this.elements[this.size] = newElement;
 		this.size++;
 	}
