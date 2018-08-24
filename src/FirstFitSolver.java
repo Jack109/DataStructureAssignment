@@ -13,14 +13,14 @@ public class FirstFitSolver<T extends Weightable> implements Solver<T> {
 		while (elements.size() > 0) {
 			T currentElement = elements.pop();
 			containers.moveToFirst();
-			while (!containers.getCurrent().canFit(currentElement)) {
+			while (!containers.current().canFit(currentElement)) {
 				containers.moveToNext();
-				if (containers.getCurrent() == null) {
+				if (containers.current() == null) {
 					containers.add(new Container<T>(maxCapacity));
 					break;
 				} 
 			}
-			containers.getCurrent().add(currentElement);
+			containers.current().add(currentElement);
 		}
 		return containers.toList();
 	}

@@ -22,7 +22,7 @@ public class PointingList<T> {
 	void moveToPrevious() {
 		this.index--;
 	}
-	public T getCurrent() {		
+	public T current() {		
 		if(this.index == this.getSize()) {
 			return null;
 		} else {

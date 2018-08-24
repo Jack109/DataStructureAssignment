@@ -17,11 +17,11 @@ public class BestFitSolver<T extends Weightable> implements Solver<T> {
 			Container<T> bestContainer = null;
 			// find the best bin
 			containers.moveToFirst();
-			while (containers.getCurrent() != null) {
-				double currentScore = containers.getCurrent().getScore(currentElement);
+			while (containers.current() != null) {
+				double currentScore = containers.current().getScore(currentElement);
 				if(currentScore >= 0 && currentScore < bestScore) {
 					bestScore = currentScore;
-					bestContainer = containers.getCurrent();
+					bestContainer = containers.current();
 				}
 				containers.moveToNext();
 			}
