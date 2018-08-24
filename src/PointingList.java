@@ -23,7 +23,7 @@ public class PointingList<T> {
 	public T getCurrent() {		
 		if(this.index == this.getSize()) {
 			return null;
-		}else {
+		} else {
 			return this.elements[this.index];
 		}
 	}
@@ -34,9 +34,11 @@ public class PointingList<T> {
 		this.elements[this.size] = newElement;
 		this.size++;
 	}
+	
 	void moveToFirst() {
 		this.index = 0;
 	}
+	
 	public void moveToLast() {
 		this.index = this.getSize() - 1;
 	}
