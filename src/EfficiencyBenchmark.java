@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-public class Benchmark {
+public class EfficiencyBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
     private static final int INPUT_COUNT = 2000;
