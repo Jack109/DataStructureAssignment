@@ -15,3 +15,5 @@
 /Container.class
 /StackSorter.class
 /BestFitDecreaseSolver.class
+/Benchmark.class
+/BenchmarkResult.class
