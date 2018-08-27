@@ -8,6 +8,7 @@ public class TimeComplexityBenchmark {
     private static final int LOOP_COUNT = 500;
     
     public static void main(String[] args) throws Exception {
+        System.out.println("NOTE: This program might take a few minutes to complete.");
         int[] inputCounts = new int[] { 100, 400, 700, 1000, 1300, 1600, 1900};
         Solver<Parcel> FF = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF = new BestFitSolver<Parcel>();
