@@ -7,11 +7,10 @@ import java.util.Stack;
 public class EfficiencyBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
-    private static Scanner scanner = new Scanner( System.in );
 
     public static void main(String[] args) throws Exception {
         System.out.println("Enter number of parcels (example: 100) >> ");
-        final int INPUT_COUNT = scanner.nextInt();
+        final int INPUT_COUNT = BenchmarkUtil.readPositiveInteger();
         Solver<Parcel> FF  = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF  = new BestFitSolver<Parcel>();
         Solver<Parcel> FFD = new FirstFitDecreaseSolver<Parcel>();

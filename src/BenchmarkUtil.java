@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class BenchmarkUtil {
@@ -16,6 +17,23 @@ public class BenchmarkUtil {
             double weight = rand.nextDouble();
             if (weight <= maximumCapacity) {
                 return weight;
+            }
+        }
+    }
+
+    public static int readPositiveInteger() {
+        while(true) {
+            try {
+                Scanner scanner = new Scanner( System.in );
+                int result = scanner.nextInt();
+                if(result <= 0) {
+                    System.out.println("The number must be positive.");
+                    throw new Exception();
+                }
+                scanner.close();
+                return result;
+            } catch(Exception ex) {
+                System.out.println("Please enter a valid integer: ");
             }
         }
     }
