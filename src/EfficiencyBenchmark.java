@@ -25,7 +25,7 @@ public class EfficiencyBenchmark {
         EfficiencyBenchmarkResult OPResult  = new EfficiencyBenchmarkResult(OP.name());
 
 
-        System.out.println("Running efficiency benchmark . . .");
+        System.out.println("\nRunning efficiency benchmark . . .\n");
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maximumCapacity = rand.nextDouble();
             Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maximumCapacity, INPUT_COUNT);
@@ -43,12 +43,11 @@ public class EfficiencyBenchmark {
     }
 }
 
-class EfficiencyBenchmarkResult {
-    private String solverName;
+class EfficiencyBenchmarkResult extends BenchmarkResult {
     private List<Integer> binsRequiredHistory;
 
     public EfficiencyBenchmarkResult(String solverName) {
-        this.solverName = solverName;
+        super(solverName);
         this.binsRequiredHistory = new ArrayList<Integer>();
     }
 
@@ -59,10 +58,10 @@ class EfficiencyBenchmarkResult {
     public String toString() {
         double averageBinRequired = (double)sum(binsRequiredHistory) / (double)binsRequiredHistory.size();
         averageBinRequired = Math.ceil(averageBinRequired);
-        return this.solverName + ", Average bin required: " + (int)averageBinRequired;
+        return this.solverName + "\t| Average number of bins required = " + (int)averageBinRequired;
     }
 
-    private double sum(List<Integer> xs) {
+    private int sum(List<Integer> xs) {
         int result = 0;
         for (int i = 0; i < xs.size(); i++) {
             result += xs.get(i);

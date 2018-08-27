@@ -22,7 +22,7 @@ public class SpeedBenchmark {
         SpeedBenchmarkResult FFDResult = new SpeedBenchmarkResult(FFD.name());
         SpeedBenchmarkResult BFDResult = new SpeedBenchmarkResult(BFD.name());
 
-        System.out.println("Running speed benchmark . . .\n");
+        System.out.println("\nRunning speed benchmark . . .\n");
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maxCapacity = rand.nextDouble();
             Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maxCapacity, INPUT_COUNT);
@@ -39,12 +39,11 @@ public class SpeedBenchmark {
 
 }
 
-class SpeedBenchmarkResult {
-    private String solverName;
+class SpeedBenchmarkResult extends BenchmarkResult {
     private List<Long> timeRequiredHistory;
 
     public SpeedBenchmarkResult(String solverName) {
-        this.solverName = solverName;
+        super(solverName);
         this.timeRequiredHistory = new ArrayList<Long>();
     }
 
@@ -57,7 +56,7 @@ class SpeedBenchmarkResult {
 
     public String toString() {
         double averageBinRequired = (double) sum(timeRequiredHistory) / (double) timeRequiredHistory.size();
-        return this.solverName + ", Average time required: " + averageBinRequired + " ms";
+        return this.solverName + "| Average time required = " + averageBinRequired + " ms";
     }
 
     private double sum(List<Long> xs) {
