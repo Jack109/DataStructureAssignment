@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class EfficiencyBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
+    private static Scanner scanner = new Scanner( System.in );
 
     public static void main(String[] args) throws Exception {
-        final int INPUT_COUNT = Integer.parseInt(args[0]);
+        System.out.println("Enter number of parcels (example: 100) >> ");
+        final int INPUT_COUNT = scanner.nextInt();
         Solver<Parcel> FF  = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF  = new BestFitSolver<Parcel>();
         Solver<Parcel> FFD = new FirstFitDecreaseSolver<Parcel>();
@@ -20,6 +23,9 @@ public class EfficiencyBenchmark {
         EfficiencyBenchmarkResult FFDResult = new EfficiencyBenchmarkResult(FFD.name());
         EfficiencyBenchmarkResult BFDResult = new EfficiencyBenchmarkResult(BFD.name());
         EfficiencyBenchmarkResult OPResult  = new EfficiencyBenchmarkResult(OP.name());
+
+
+        System.out.println("Running efficiency benchmark . . .");
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maximumCapacity = rand.nextDouble();
             Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maximumCapacity, INPUT_COUNT);
@@ -29,7 +35,6 @@ public class EfficiencyBenchmark {
             BFDResult.addNextBinsRequired(BFD.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
             OPResult.addNextBinsRequired(OP.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
         }
-        System.out.println("Number of parcels is " + INPUT_COUNT);
         System.out.println(FFResult);
         System.out.println(BFResult);
         System.out.println(FFDResult);
@@ -54,7 +59,7 @@ class EfficiencyBenchmarkResult {
     public String toString() {
         double averageBinRequired = (double)sum(binsRequiredHistory) / (double)binsRequiredHistory.size();
         averageBinRequired = Math.ceil(averageBinRequired);
-        return "(Name: " + this.solverName + ", Average bin required: " + (int)averageBinRequired;
+        return this.solverName + ", Average bin required: " + (int)averageBinRequired;
     }
 
     private double sum(List<Integer> xs) {
