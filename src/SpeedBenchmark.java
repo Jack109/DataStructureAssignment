@@ -20,7 +20,7 @@ public class SpeedBenchmark {
         SpeedBenchmarkResult BFDResult = new SpeedBenchmarkResult(BFD.name());
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maxCapacity = rand.nextDouble();
-            Stack<Parcel> randomParcels = getRandomParcels(maxCapacity, INPUT_COUNT);
+            Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maxCapacity, INPUT_COUNT);
             FFResult.benchmark(FF,   (Stack<Parcel>)randomParcels.clone(), maxCapacity);
             BFResult.benchmark(BF,   (Stack<Parcel>)randomParcels.clone(), maxCapacity);
             FFDResult.benchmark(FFD, (Stack<Parcel>)randomParcels.clone(), maxCapacity);
@@ -33,22 +33,6 @@ public class SpeedBenchmark {
         System.out.println(BFDResult);
     }
 
-    private static Stack<Parcel> getRandomParcels(double maximumCapacity, int count) {
-        Stack<Parcel> parcels = new Stack<Parcel>();
-        for (int j = 0; j < count; j++) {
-            parcels.push(new Parcel(getRandomWeight(maximumCapacity)));
-        }
-        return parcels;
-    }
-
-    private static double getRandomWeight(double maximumCapacity) {
-        while (true) {
-            double weight = rand.nextDouble();
-            if (weight <= maximumCapacity) {
-                return weight;
-            }
-        }
-    }
 }
 
 class SpeedBenchmarkResult {

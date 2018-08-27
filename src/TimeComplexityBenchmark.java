@@ -30,7 +30,7 @@ public class TimeComplexityBenchmark {
         for (int i = 0; i < inputCounts.length; i++) {
             for (int j = 0; j < LOOP_COUNT; j++) {
                 double maximumCapacity = rand.nextDouble();
-                Stack<Parcel> randomParcels = getRandomParcels(maximumCapacity, inputCounts[i]);
+                Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maximumCapacity, inputCounts[i]);
 
                 FF.solve((Stack<Parcel>) randomParcels.clone(), maximumCapacity);
                 FFResult.addNextIterationCountRequired(FF.interationCount());
@@ -59,23 +59,6 @@ public class TimeComplexityBenchmark {
             }
             iterationCounts = "[" + iterationCounts + "]";
             System.out.println(names[i] + " = " + iterationCounts);
-        }
-    }
-
-    private static Stack<Parcel> getRandomParcels(double maximumCapacity, int count) {
-        Stack<Parcel> parcels = new Stack<Parcel>();
-        for (int j = 0; j < count; j++) {
-            parcels.push(new Parcel(getRandomWeight(maximumCapacity)));
-        }
-        return parcels;
-    }
-
-    private static double getRandomWeight(double maximumCapacity) {
-        while (true) {
-            double weight = rand.nextDouble();
-            if (weight <= maximumCapacity) {
-                return weight;
-            }
         }
     }
 }

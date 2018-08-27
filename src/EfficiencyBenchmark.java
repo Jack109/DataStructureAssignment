@@ -22,7 +22,7 @@ public class EfficiencyBenchmark {
         EfficiencyBenchmarkResult OPResult  = new EfficiencyBenchmarkResult(OP.name());
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maximumCapacity = rand.nextDouble();
-            Stack<Parcel> randomParcels = getRandomParcels(maximumCapacity, INPUT_COUNT);
+            Stack<Parcel> randomParcels = BenchmarkUtil.getRandomParcels(maximumCapacity, INPUT_COUNT);
             FFResult .addNextBinsRequired(FF.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
             BFResult .addNextBinsRequired(BF.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
             FFDResult.addNextBinsRequired(FFD.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
@@ -35,23 +35,6 @@ public class EfficiencyBenchmark {
         System.out.println(FFDResult);
         System.out.println(BFDResult);
         System.out.println(OPResult);
-    }
-
-    private static Stack<Parcel> getRandomParcels(double maximumCapacity, int count) {
-        Stack<Parcel> parcels = new Stack<Parcel>();
-        for (int j = 0; j < count; j++) {
-            parcels.push(new Parcel(getRandomWeight(maximumCapacity))) ;
-        }
-        return parcels;
-    }
-
-    private static double getRandomWeight(double maximumCapacity) {
-        while(true) {
-            double weight = rand.nextDouble();
-            if(weight <= maximumCapacity) {
-                return weight;
-            }
-        }
     }
 }
 
