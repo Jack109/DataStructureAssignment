@@ -26,6 +26,7 @@ public class SpeedBenchmark {
             FFDResult.benchmark(FFD, (Stack<Parcel>)randomParcels.clone(), maxCapacity);
             BFDResult.benchmark(BFD, (Stack<Parcel>)randomParcels.clone(), maxCapacity);
         }
+        System.out.println("Number of parcels = " + INPUT_COUNT);
         System.out.println(FFResult);
         System.out.println(BFResult);
         System.out.println(FFDResult);
