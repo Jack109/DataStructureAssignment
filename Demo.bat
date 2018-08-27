@@ -1,4 +1,4 @@
 echo on
 cd bin
-java TruckLoading
+java Demo
 pause
