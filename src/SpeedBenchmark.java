@@ -6,9 +6,9 @@ import java.util.Stack;
 public class SpeedBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
-    private static final int INPUT_COUNT = 10; // change this number
-
+    
     public static void main(String[] args) throws Exception {
+        final int INPUT_COUNT = Integer.parseInt(args[0]);
         Solver<Parcel> FF = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF = new BestFitSolver<Parcel>();
         Solver<Parcel> FFD = new FirstFitDecreaseSolver<Parcel>();
@@ -20,7 +20,7 @@ public class SpeedBenchmark {
         SpeedBenchmarkResult BFDResult = new SpeedBenchmarkResult(BFD.name());
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maxCapacity = rand.nextDouble();
-            Stack<Parcel> randomParcels = getRandomParcels(maxCapacity);
+            Stack<Parcel> randomParcels = getRandomParcels(maxCapacity, INPUT_COUNT);
             FFResult.benchmark(FF,   (Stack<Parcel>)randomParcels.clone(), maxCapacity);
             BFResult.benchmark(BF,   (Stack<Parcel>)randomParcels.clone(), maxCapacity);
             FFDResult.benchmark(FFD, (Stack<Parcel>)randomParcels.clone(), maxCapacity);
@@ -32,9 +32,9 @@ public class SpeedBenchmark {
         System.out.println(BFDResult);
     }
 
-    private static Stack<Parcel> getRandomParcels(double maximumCapacity) {
+    private static Stack<Parcel> getRandomParcels(double maximumCapacity, int count) {
         Stack<Parcel> parcels = new Stack<Parcel>();
-        for (int j = 0; j < INPUT_COUNT; j++) {
+        for (int j = 0; j < count; j++) {
             parcels.push(new Parcel(getRandomWeight(maximumCapacity)));
         }
         return parcels;

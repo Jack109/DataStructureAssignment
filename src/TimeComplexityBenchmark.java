@@ -6,7 +6,7 @@ import java.util.Stack;
 public class TimeComplexityBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
-
+    
     public static void main(String[] args) throws Exception {
         int[] inputCounts = new int[] { 100, 400, 700, 1000, 1300, 1600, 1900};
         Solver<Parcel> FF = new FirstFitSolver<Parcel>();
