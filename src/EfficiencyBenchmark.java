@@ -5,18 +5,20 @@ import java.util.Stack;
 
 public class EfficiencyBenchmark {
     private static Random rand = new Random();
-    private static final int LOOP_COUNT = 500;
-    private static final int INPUT_COUNT = 10; // You can change this to any positive number
+    private static final int LOOP_COUNT = 50;
+    private static final int INPUT_COUNT = 5000; // You can change this to any positive number
     public static void main(String[] args) throws Exception {
         Solver<Parcel> FF  = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF  = new BestFitSolver<Parcel>();
         Solver<Parcel> FFD = new FirstFitDecreaseSolver<Parcel>();
         Solver<Parcel> BFD = new BestFitDecreaseSolver<Parcel>();
+        Solver<Parcel> OP  = new OptimalSolver<Parcel>();
 
         EfficiencyBenchmarkResult FFResult  = new EfficiencyBenchmarkResult(FF.name());
         EfficiencyBenchmarkResult BFResult  = new EfficiencyBenchmarkResult(BF.name());
         EfficiencyBenchmarkResult FFDResult = new EfficiencyBenchmarkResult(FFD.name());
         EfficiencyBenchmarkResult BFDResult = new EfficiencyBenchmarkResult(BFD.name());
+        EfficiencyBenchmarkResult OPResult  = new EfficiencyBenchmarkResult(OP.name());
         for (int i = 0; i < LOOP_COUNT; i++) {
             double maximumCapacity = rand.nextDouble();
             Stack<Parcel> randomParcels = getRandomParcels(maximumCapacity);
@@ -24,11 +26,14 @@ public class EfficiencyBenchmark {
             BFResult .addNextBinsRequired(BF.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
             FFDResult.addNextBinsRequired(FFD.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
             BFDResult.addNextBinsRequired(BFD.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
+            OPResult.addNextBinsRequired(OP.solve((Stack<Parcel>)randomParcels.clone(), maximumCapacity).size());
         }
+        System.out.println("Number of parcels is " + INPUT_COUNT);
         System.out.println(FFResult);
         System.out.println(BFResult);
         System.out.println(FFDResult);
         System.out.println(BFDResult);
+        System.out.println(OPResult);
     }
 
     private static Stack<Parcel> getRandomParcels(double maximumCapacity) {
@@ -64,7 +69,8 @@ class EfficiencyBenchmarkResult {
 
     public String toString() {
         double averageBinRequired = (double)sum(binsRequiredHistory) / (double)binsRequiredHistory.size();
-        return "(Name: " + this.solverName + ", Average bin required: " + averageBinRequired;
+        averageBinRequired = Math.ceil(averageBinRequired);
+        return "(Name: " + this.solverName + ", Average bin required: " + (int)averageBinRequired;
     }
 
     private double sum(List<Integer> xs) {

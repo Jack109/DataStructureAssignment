@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-public class Main {
+public class Demo {
 	public static void main(String[] args) throws Exception {
 		// Note that the last element is actually the first element,
 		// Because Stack is used
