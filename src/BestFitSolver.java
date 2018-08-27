@@ -2,12 +2,14 @@ import java.util.List;
 import java.util.Stack;
 
 public class BestFitSolver<T extends Weightable> implements Solver<T> {
+	private int interationCount;
 	public String name() {
 		return "Best Fit";
 	}
 
 	@Override
 	public List<Container<T>> solve(Stack<T> elements, double maxCapacity) throws Exception {
+		this.interationCount = 0;
 		PointingList<Container<T>> containers = new PointingList<Container<T>>();
 		containers.add(new Container<T>(maxCapacity));
 		while (elements.size() > 0) {
@@ -18,6 +20,7 @@ public class BestFitSolver<T extends Weightable> implements Solver<T> {
 			// find the best bin
 			containers.moveToFirst();
 			while (containers.current() != null) {
+				this.interationCount ++;
 				double currentScore = containers.current().getScore(currentElement);
 				if(currentScore >= 0 && currentScore < bestScore) {
 					bestScore = currentScore;
@@ -36,5 +39,10 @@ public class BestFitSolver<T extends Weightable> implements Solver<T> {
 			}
 		}
 		return containers.toList();
+	}
+
+	@Override
+	public int interationCount() {
+		return this.interationCount;
 	}
 }

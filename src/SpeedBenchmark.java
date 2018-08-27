@@ -6,7 +6,7 @@ import java.util.Stack;
 public class SpeedBenchmark {
     private static Random rand = new Random();
     private static final int LOOP_COUNT = 500;
-    private static final int INPUT_COUNT = 2000; // change this number
+    private static final int INPUT_COUNT = 10; // change this number
 
     public static void main(String[] args) throws Exception {
         Solver<Parcel> FF = new FirstFitSolver<Parcel>();

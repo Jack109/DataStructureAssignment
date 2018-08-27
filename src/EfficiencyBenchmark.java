@@ -5,8 +5,8 @@ import java.util.Stack;
 
 public class EfficiencyBenchmark {
     private static Random rand = new Random();
-    private static final int LOOP_COUNT = 50;
-    private static final int INPUT_COUNT = 5000; // You can change this to any positive number
+    private static final int LOOP_COUNT = 500;
+    private static final int INPUT_COUNT = 10; // You can change this to any positive number
     public static void main(String[] args) throws Exception {
         Solver<Parcel> FF  = new FirstFitSolver<Parcel>();
         Solver<Parcel> BF  = new BestFitSolver<Parcel>();

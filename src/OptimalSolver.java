@@ -29,4 +29,9 @@ public class OptimalSolver<T extends Weightable> implements Solver<T> {
 		return "Optimal solver";
 	}
 
+	@Override
+	public int interationCount() {
+		return 0;
+	}
+
 }
